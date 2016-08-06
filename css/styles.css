@@ -1,0 +1,110 @@
+@import 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700';
+
+
+a:link, a:visited, a:hover, a:active {
+text-decoration:none;
+}
+
+/*
+========================================================
+CSS
+========================================================
+*/
+
+* {
+font-family: "proxima-nova",sans-serif;
+}
+
+.overlay {
+background: #222;
+bottom: 0;
+left: 0;
+position: absolute;
+right: 0;
+top: 0;
+z-index: 2;
+}
+
+.saveContainer {
+width: 100%;
+padding:2em 0;
+background:#34495e;
+opacity: .9;
+bottom: 0;
+position: fixed;
+z-index: 999;
+}
+
+.saveButton {
+cursor: pointer;
+margin:0 auto;
+width:200px;
+text-align: center;
+color: #fff;
+background-color: #29d9c2;
+padding: 10px 19px;
+font-size: 17px;
+line-height: 1.471;
+border-radius: 6px;
+}
+
+.saveButton:hover {
+background-color: #18c8b1;
+}
+
+
+/*
+========================================================
+BOOTSTRAP
+========================================================
+*/
+
+.navbar {
+margin-bottom: 0 !important;
+}
+
+/*
+========================================================
+EDITOR
+========================================================
+*/
+
+h1:focus, p:focus {
+outline: 1px dashed #34495e;
+}
+
+/*
+========================================================
+CAROUSEL
+========================================================
+*/
+
+.carousel {
+width: 100%;
+}
+
+.carousel-inner{
+width:100%;
+max-height: 500px !important;
+}
+
+.carousel-control.left, .carousel-control.right {
+background: none !important;
+}
+
+.carousel-control {
+text-shadow: none !important;
+opacity:1;
+}
+
+/*
+========================================================
+MOBILE
+========================================================
+*/
+
+@media (max-width:768px) {
+
+
+
+}

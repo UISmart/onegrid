@@ -5,6 +5,10 @@ a:link, a:visited, a:hover, a:active {
 text-decoration:none;
 }
 
+::selection {
+background: gray;
+}
+
 /*
 ========================================================
 CSS
@@ -15,33 +19,43 @@ CSS
 font-family: "proxima-nova",sans-serif;
 }
 
-.overlay {
-background: #222;
-bottom: 0;
-left: 0;
-position: absolute;
-right: 0;
-top: 0;
-z-index: 2;
-}
-
-.saveContainer {
+.buttonsContainer {
 width: 100%;
-padding:2em 0;
+padding:1em 0;
 background:#34495e;
-opacity: .9;
+opacity: .95;
 bottom: 0;
 position: fixed;
 z-index: 999;
 }
 
-.saveButton {
+button {
+border: none;
+outline: none;
+}
+
+button.saveButton {
+float: left;
 cursor: pointer;
-margin:0 auto;
-width:200px;
+margin:.5em;
+width:160px;
 text-align: center;
 color: #fff;
-background-color: #29d9c2;
+background-color: #0FFADC;
+padding: 10px 19px;
+font-size: 17px;
+line-height: 1.471;
+border-radius: 6px;
+}
+
+.downloadButton {
+float: left;
+cursor: pointer;
+margin:.5em;
+width:160px;
+text-align: center;
+color: #fff;
+background-color: #12273d;
 padding: 10px 19px;
 font-size: 17px;
 line-height: 1.471;
@@ -49,19 +63,14 @@ border-radius: 6px;
 }
 
 .saveButton:hover {
-background-color: #18c8b1;
+background-color: #07b7a0;
+}
+
+.downloadButton:hover {
+background-color: #01162c;
 }
 
 
-/*
-========================================================
-BOOTSTRAP
-========================================================
-*/
-
-.navbar {
-margin-bottom: 0 !important;
-}
 
 /*
 ========================================================
@@ -71,6 +80,293 @@ EDITOR
 
 h1:focus, p:focus {
 outline: 1px dashed #34495e;
+}
+
+.editorH1 {
+}
+
+span.editor {
+display: none;
+position:relative;
+top:20px;
+width: 160px;
+height:60px;
+font-size: 14px;
+text-align: center;
+color: #fff;
+background:#34495e;
+border: 4px solid #34495e;
+border-radius: 6px;
+}
+
+span.editor:after {
+content: "";
+position: absolute;
+width: 0;
+height: 0;
+border-width: 10px;
+border-style: solid;
+border-color:#34495e transparent transparent transparent;
+top: 56px;
+left: 65px;
+}
+
+.H1Color {
+cursor: pointer;
+float: left;
+}
+
+#font {
+display: block;
+}
+
+.H1Font {
+cursor: pointer;
+position: relative;
+float: left;
+width: 48px;
+height: 48px;
+z-index: 999;
+}
+
+.H1FontClose {
+display: none;
+cursor: pointer;
+position: relative;
+float: left;
+width: 48px;
+height: 48px;
+z-index: 999;
+}
+
+.H1Align {
+cursor: pointer;
+float: left;
+width: 48px;
+height: 48px;
+}
+
+.H1AlignClose {
+display: none;
+cursor: pointer;
+float: left;
+width: 48px;
+height: 48px;
+}
+
+/*
+========================================================
+EDITOR - COLORS
+========================================================
+*/
+
+.minicolors-theme-default.minicolors {
+float: left;
+width: 48px !important;
+height: 48px !important;
+}
+
+.minicolors-theme-default .minicolors-input {
+height: auto !important;
+}
+
+/* color by default */
+.minicolors-theme-default .minicolors-swatch {
+top:11px !important;
+left:12px !important;
+border: 0 !important;
+width: 30px !important;
+height: 30px !important;
+cursor:pointer;
+border-radius: 50%;
+background:rgba(255, 255, 255, 1); !important;
+border: 0!important;
+}
+
+/* color chosen */
+.minicolors-swatch-color {
+width: 30px !important;
+height: 30px !important;
+border-radius: 50%;
+border: 0!important;
+}
+
+/* PANELS POSITION */
+
+.minicolors-position-left .minicolors-panel {
+left: -10px;
+top: 70px!important;
+}
+
+.minicolors-panel {
+background: transparent !important;
+border: 0 !important;
+box-shadow:none !important;
+}
+
+/*
+.minicolors-position-right .minicolors-panel {
+
+}
+
+.minicolors-position-left .minicolors-panel {
+
+}
+*/
+
+/* PICKERS */
+
+.minicolors-picker {
+width: 20px !important;
+height: 6px !important;
+background: white;
+border: 0 !important;
+opacity:.8 !important;
+}
+
+.minicolors-grid .minicolors-picker {
+width: 16px !important;
+height: 16px !important;
+border: 0 !important;
+background: white !important;
+border-radius: 50% !important;
+opacity:.8 !important;
+}
+
+.minicolors-grid .minicolors-picker > div {
+border:0 !important;
+}
+
+.minicolors .minicolors-grid {
+cursor: none;
+}
+
+/* HIDE MINICOLORS SLIDER */
+
+.minicolors-slider {
+display: none;
+}
+
+/*
+========================================================
+FONTAWESOME
+========================================================
+*/
+
+i.fa-font {
+padding:12px;
+padding-left:16px;
+color: #fff;
+font-size: 2em;
+}
+
+i.fa-align-left {
+padding:12px;
+padding-left:16px;
+padding-top: 14px;
+color: #fff;
+font-size: 2em;
+}
+
+i.fa-font:hover, i.fa-align-left:hover {
+color:#0FFADC;
+}
+
+.closed {
+color:#0FFADC !important;
+}
+
+/*
+========================================================
+FONT SELECTOR
+========================================================
+*/
+
+#browseFonts {
+display: none;
+position: absolute;
+top:5.1em;
+right: 5.1em;
+width: 10em;
+height: 5em;
+background: rgba(50, 50, 70, 0.9);
+z-index:5;
+}
+
+.font-select {
+width: 100% !important;
+margin-top:1.25em;
+}
+
+.font-select > a {
+background: none !important;
+border: 0 !important;
+border-radius:0 !important;
+box-shadow: none !important;
+color:#fff !important;
+}
+
+.font-select-active > a {
+border: 0 !important;
+border-radius:0 !important;
+box-shadow: none !important;
+}
+
+.font-select > a span {
+font-size:16px;
+}
+
+/* arrow to select font */
+.font-select > a div {
+background: none !important;
+border:0 !important;
+}
+
+/* dropdown menu to select font */
+.font-select .fs-drop {
+width: 8.8em !important;
+height: 13em !important;
+background:rgb(50, 50, 70) !important;
+color:#bbb !important;
+border-style:none !important;
+box-shadow:none !important;
+position: absolute;
+top:3.15em !important;
+left: 0;
+z-index: 999;
+border-radius:0 !important;
+}
+
+/* ul class */
+.font-select .fs-results {
+width: 97.5% !important;
+height:13em !important;
+max-height: 13em !important;
+margin:6px 0 !important;
+}
+
+/* li class */
+.font-select .fs-results li:hover {
+background: rgb(15, 250, 220) !important;
+}
+
+/*
+========================================================
+BOOTSTRAP
+========================================================
+*/
+
+h1 {
+text-shadow: none;
+font-weight: 500 !important;
+}
+
+p {
+text-shadow: none;
+}
+
+.navbar {
+margin-bottom: 0 !important;
 }
 
 /*
@@ -85,7 +381,6 @@ width: 100%;
 
 .carousel-inner{
 width:100%;
-max-height: 500px !important;
 }
 
 .carousel-control.left, .carousel-control.right {

@@ -7,7 +7,7 @@
 
 // EDITABLE H1.
 
-var EditableDivs = ("h1, p");
+var EditableDivs = ("h1, h2, p");
 
 $(function(){
     var $div=$(EditableDivs), isEditable=$div.is('.editable');
@@ -31,11 +31,27 @@ $(function() {
   });
 });
 
+// hide editor
+/* $(function() {
+    $("#h1").blur( function() {
+    $(".editor").show().delay(500).fadeOut();
+  });
+}); */
+
+// show editor
+$(function() {
+    $(".jumbotron-text").focus( function() {
+    $(".editor-p").css("display","block");
+  });
+});
+
+
+
 // insert tools in tooltip H1
 $('.editor').append("<div class='H1Color'></div>\
-<div class='H1Font'><i class='fa fa-font'></i></div>\
-<div class='H1FontClose'><i class='fa fa-font closed'></i></div>\
-<div id='browseFonts' class='animated fadeIn'><input id='font' type='text'></div>\
+<div class='H1Font animated flipInX'><i class='fa fa-font'></i></div>\
+<div class='H1FontClose animated flipInX'><i class='fa fa-font closed'></i></div>\
+<div class='browseFonts animated fadeIn'><input id='font' type='text'></div>\
 <div class='H1Align'><i class='fa fa-align-left'></i></div>\
 <div class='H1AlignClose'><i class='fa fa-align-left closed'></i></div>");
 
@@ -157,9 +173,16 @@ $('.fs-drop').addClass ('animated fadeIn');
 
 // H1Font button
 $('.H1Font').click(function() {
-$('#browseFonts').css ('display', 'block');
-$('.H1Font').css ('display', 'none');
+$('.browseFonts').css ('display', 'block');
 $('.H1FontClose').css ('display', 'block');
+$('.H1Font').css ('display', 'none');
+});
+
+// H1FontClose button
+$('.H1FontClose').click(function() {
+$('.browseFonts').css ('display', 'none');
+$('.H1FontClose').css ('display', 'none');
+$('.H1Font').css ('display', 'block');
 });
 
 // H1Align button
@@ -167,3 +190,5 @@ $('.H1Align').click(function() {
 $('.H1Align').css ('display', 'none');
 $('.H1AlignClose').css ('display', 'block');
 });
+
+// clickOutsideThisElement

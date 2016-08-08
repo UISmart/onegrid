@@ -1,5 +1,15 @@
 @import 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700';
 
+/*
+========================================================
+RESET
+========================================================
+*/
+
+img {
+max-width: 100% !important;
+width: 100% !important;
+}
 
 a:link, a:visited, a:hover, a:active {
 text-decoration:none;
@@ -88,24 +98,19 @@ h1:focus, p:focus {
 outline: 1px dashed #34495e;
 }
 
-.editorH1 {
-}
-
-span.editor {
+span.editor, span.editorParagraph {
 display: none;
 position:relative;
-top:20px;
-width: 160px;
-height:60px;
+width: 154px;
+height:53px;
 font-size: 14px;
 text-align: center;
 color: #fff;
 background:#34495e;
-border: 4px solid #34495e;
-border-radius: 0px;
+border-radius: 6px;
 }
 
-span.editor:after {
+span.editor:after, span.editorParagraph:after {
 content: "";
 position: absolute;
 width: 0;
@@ -113,7 +118,7 @@ height: 0;
 border-width: 10px;
 border-style: solid;
 border-color:#34495e transparent transparent transparent;
-top: 56px;
+top: 52px;
 left: 65px;
 }
 
@@ -122,11 +127,7 @@ cursor: pointer;
 float: left;
 }
 
-#font {
-display: block;
-}
-
-.H1Font {
+.H1Font, .PFont {
 cursor: pointer;
 position: relative;
 float: left;
@@ -135,7 +136,7 @@ height: 48px;
 z-index: 999;
 }
 
-.H1FontClose {
+.H1FontClose, .PFontClose {
 display: none;
 cursor: pointer;
 position: relative;
@@ -145,14 +146,14 @@ height: 48px;
 z-index: 999;
 }
 
-.H1Align {
+.H1Align, .PAlign {
 cursor: pointer;
 float: left;
 width: 48px;
 height: 48px;
 }
 
-.H1AlignClose {
+.H1AlignClose, .PAlignClose {
 display: none;
 cursor: pointer;
 float: left;
@@ -255,7 +256,7 @@ display: none;
 
 /*
 ========================================================
-FONTAWESOME
+EDITOR - FONTAWESOME
 ========================================================
 */
 
@@ -286,7 +287,7 @@ color:#29d9c2 !important;
 
 /*
 ========================================================
-FONT SELECTOR
+EDITOR - FONT SELECTOR
 ========================================================
 */
 
@@ -383,6 +384,24 @@ margin-bottom: 0 !important;
 border-radius: 0 !important;
 }
 
+.jumbotron {
+background: #12273d;
+margin-bottom: 0;
+}
+
+.jumbotron h1 {
+color: #29d9c2;
+}
+
+.jumbotron p {
+color: #bdc3c7;
+}
+
+section#about {
+padding: 6em 0;
+background: #29d9c2;
+}
+
 /*
 ========================================================
 CAROUSEL
@@ -404,6 +423,12 @@ background: none !important;
 .carousel-control {
 text-shadow: none !important;
 opacity:1;
+}
+
+.carousel-control.item.active {
+background: #00C9FF; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #00C9FF , #92FE9D); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #00C9FF , #92FE9D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /*

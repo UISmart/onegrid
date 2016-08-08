@@ -31,12 +31,17 @@ $(function() {
   });
 });
 
-// hide editor
-/* $(function() {
-    $("#h1").blur( function() {
-    $(".editor").show().delay(500).fadeOut();
+// tooltip paragraph
+
+$('.paragraph').append("<span class='editorParagraph animated bounceInUp'></span>");
+$( ".editorParagraph" ).insertBefore ( $( ".paragraph" ) );
+
+// show editor
+$(function() {
+    $(".paragraph").focus( function() {
+    $(".editorParagraph").css("display","block");
   });
-}); */
+});
 
 // show editor
 $(function() {
@@ -44,7 +49,6 @@ $(function() {
     $(".editor-p").css("display","block");
   });
 });
-
 
 
 // insert tools in tooltip H1
@@ -55,56 +59,13 @@ $('.editor').append("<div class='H1Color'></div>\
 <div class='H1Align'><i class='fa fa-align-left'></i></div>\
 <div class='H1AlignClose'><i class='fa fa-align-left closed'></i></div>");
 
-// localStorage of the content editable text
-
-var theContent = $('#h1');
-
-$('#save').on('click', function(){
-  var editedContent   = theContent.html();
-  localStorage.newContent = editedContent;
-});
-
-// Retrieve
-if(localStorage.getItem('newContent')) {
-  theContent.html(localStorage.getItem('newContent'));
-}
-
-// localStorage of the colors
-
-$('#save').on('click', function(){
-    var color = $('.#34495e').css('background-color');
-
-    localStorage.setItem('colorvalue', color);
-});
-
-$(document).ready(function() {
-
-// Retrieve
-var color = localStorage.getItem('colorvalue');
-$('.jumbotron').css('background-color', color);
-
-});
-
-// Download the HTML / Save just what is within html #content
-
-function createDownloadLink(anchorSelector, str, fileName){
-    if(window.navigator.msSaveOrOpenBlob) {
-        var fileData = [str];
-        blobObject = new Blob(fileData);
-        $(anchorSelector).click(function(){
-            window.navigator.msSaveOrOpenBlob(blobObject, fileName);
-        });
-    } else {
-        var url = "data:text/plain;charset=utf-8," + encodeURIComponent(str);
-        $(anchorSelector).attr("download", fileName);
-        $(anchorSelector).attr("href", url);
-    }
-}
-
-$(function () {
-    var str = document.getElementById("content").innerHTML;
-    createDownloadLink("#export",str,"OneGridPage.html");
-});
+// insert tools in tooltip paragraph
+$('.editorParagraph').append("<div class='PColor'></div>\
+<div class='PFont animated flipInX'><i class='fa fa-font'></i></div>\
+<div class='PFontClose animated flipInX'><i class='fa fa-font closed'></i></div>\
+<div class='browseFonts animated fadeIn'><input id='font' type='text'></div>\
+<div class='PAlign'><i class='fa fa-align-left'></i></div>\
+<div class='PAlignClose'><i class='fa fa-align-left closed'></i></div>");
 
 // mini colors
 
@@ -191,4 +152,54 @@ $('.H1Align').css ('display', 'none');
 $('.H1AlignClose').css ('display', 'block');
 });
 
-// clickOutsideThisElement
+// localStorage of the content editable text
+
+var theContentText = $('#h1');
+var theFontSelected = $('#font');
+
+$('#save').on('click', function(){
+  var editedContent   = theContentText.html();
+  localStorage.newContent = editedContent;
+});
+
+// Retrieve
+if(localStorage.getItem('newContent')) {
+  theContentText.html(localStorage.getItem('newContent'));
+}
+
+// localStorage of the H1 color
+
+$('#save').on('click', function(){
+    var color = $('#h1').css('color');
+
+    localStorage.setItem('colorvalue', color);
+});
+
+$(document).ready(function() {
+
+// Retrieve
+var color = localStorage.getItem('colorvalue');
+$('#h1').css('color', color);
+
+});
+
+// Download the HTML / Save just what is within html #content
+
+function createDownloadLink(anchorSelector, str, fileName){
+    if(window.navigator.msSaveOrOpenBlob) {
+        var fileData = [str];
+        blobObject = new Blob(fileData);
+        $(anchorSelector).click(function(){
+            window.navigator.msSaveOrOpenBlob(blobObject, fileName);
+        });
+    } else {
+        var url = "data:text/plain;charset=utf-8," + encodeURIComponent(str);
+        $(anchorSelector).attr("download", fileName);
+        $(anchorSelector).attr("href", url);
+    }
+}
+
+$(function () {
+    var str = document.getElementById("content").innerHTML;
+    createDownloadLink("#export",str,"OneGridPage.html");
+});

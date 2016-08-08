@@ -24,10 +24,12 @@ $(function () {
 $('#h1').append("<span class='editor animated bounceInUp'></span>");
 $( ".editor" ).insertBefore ( $( "#h1" ) );
 
-// show editor
+// show editor #h1
 $(function() {
     $("#h1").focus( function() {
     $(".editor").css("display","block");
+    $(".editorParagraph").hide().delay(500).fadeOut();
+    $(".editorJumboButton").hide().delay(500).fadeOut();
   });
 });
 
@@ -36,20 +38,37 @@ $(function() {
 $('.paragraph').append("<span class='editorParagraph animated bounceInUp'></span>");
 $( ".editorParagraph" ).insertBefore ( $( ".paragraph" ) );
 
-// show editor
+// show editor paragraph
 $(function() {
     $(".paragraph").focus( function() {
     $(".editorParagraph").css("display","block");
+    $(".editor").hide().delay(500).fadeOut();
+    $(".editorJumboButton").hide().delay(500).fadeOut();
   });
 });
 
-// show editor
+// tooltip button
+
+$('.JumboButton').append("<span class='editorJumboButton animated bounceInUp'></span>");
+$( ".editorJumboButton" ).insertBefore ( $( ".JumboButton" ) );
+
+// show editor JumboButton
 $(function() {
-    $(".jumbotron-text").focus( function() {
-    $(".editor-p").css("display","block");
+    $(".JumboButton").hover( function() {
+    $(".editorJumboButton").css("display","block");
+    $(".editor").hide().delay(500).fadeOut();
+    $(".editorParagraph").hide().delay(500).fadeOut();
   });
 });
 
+// hide editor
+$(function() {
+    $(".JumboButton").blur( function() {
+    $(".editorJumboButton").hide().delay(500).fadeOut();
+  });
+});
+
+//
 
 // insert tools in tooltip H1
 $('.editor').append("<div class='H1Color'></div>\
@@ -63,9 +82,12 @@ $('.editor').append("<div class='H1Color'></div>\
 $('.editorParagraph').append("<div class='PColor'></div>\
 <div class='PFont animated flipInX'><i class='fa fa-font'></i></div>\
 <div class='PFontClose animated flipInX'><i class='fa fa-font closed'></i></div>\
-<div class='browseFonts animated fadeIn'><input id='font' type='text'></div>\
+<div class='PbrowseFonts animated fadeIn'><input id='fontParagraph' type='text'></div>\
 <div class='PAlign'><i class='fa fa-align-left'></i></div>\
 <div class='PAlignClose'><i class='fa fa-align-left closed'></i></div>");
+
+// insert tools in tooltip button
+$('.editorJumboButton').append("<div class='ButtonColor'></div>");
 
 // mini colors
 
@@ -108,9 +130,36 @@ $('#h1').css("color", newCol);
 
 });
 
+// Paragraph color
+
+$('.PColor').minicolors()
+
+$(".PColor").on('change', function() {
+//var newCol = $(this).parent().find('.minicolors-swatch-color').css("color");
+var newCol = $(this).parent().find('.minicolors-swatch-color').attr('style');
+
+// USE CSS NOT ATTRIB !!
+$('.paragraph').css("color", newCol);
+
 });
 
-// FONT SELECTOR
+// Jumbotron Button color
+
+$('.ButtonColor').minicolors()
+
+$(".ButtonColor").on('change', function() {
+//var newCol = $(this).parent().find('.minicolors-swatch-color').css("color");
+var newCol = $(this).parent().find('.minicolors-swatch-color').attr('style');
+
+// USE CSS NOT ATTRIB !!
+$('.JumboButton').css("background-color", newCol);
+
+});
+
+});
+
+
+// Font Select H1
 
 $(function(){
 $('#font').fontselect().change(function(){
@@ -130,9 +179,49 @@ $('.font-select > a').click(function() {
 $('.fs-drop').addClass ('animated fadeIn');
 });
 
-// H1Color button
+// Font Select Paragraph
 
-// H1Font button
+$(function(){
+$('#fontParagraph').fontselect().change(function(){
+
+  // replace + signs with spaces for css
+  var font = $(this).val().replace(/\+/g, ' ');
+
+  // split font into family and weight
+  font = font.split(':');
+
+// set family on H1
+$('.paragraph').css('font-family', font[0]);
+});
+});
+
+$('.font-select > a').click(function() {
+$('.fs-drop').addClass ('animated fadeIn');
+});
+
+// Font Select Button
+
+$(function(){
+$('#fontButton').fontselect().change(function(){
+
+  // replace + signs with spaces for css
+  var font = $(this).val().replace(/\+/g, ' ');
+
+  // split font into family and weight
+  font = font.split(':');
+
+// set family on H1
+$('JumboButton').css('font-family', font[0]);
+});
+});
+
+$('.font-select > a').click(function() {
+$('.fs-drop').addClass ('animated fadeIn');
+});
+
+//
+
+// H1 Font selection
 $('.H1Font').click(function() {
 $('.browseFonts').css ('display', 'block');
 $('.H1FontClose').css ('display', 'block');
@@ -145,6 +234,36 @@ $('.browseFonts').css ('display', 'none');
 $('.H1FontClose').css ('display', 'none');
 $('.H1Font').css ('display', 'block');
 });
+
+// Paragraph Font selection
+$('.PFont').click(function() {
+$('.PbrowseFonts').css ('display', 'block');
+$('.PFontClose').css ('display', 'block');
+$('.PFont').css ('display', 'none');
+});
+
+// Paragraph FontClose button
+$('.PFontClose').click(function() {
+$('.PbrowseFonts').css ('display', 'none');
+$('.PFontClose').css ('display', 'none');
+$('.PFont').css ('display', 'block');
+});
+
+// Button Font selection
+$('.ButtonFont').click(function() {
+$('.ButtonBrowseFonts').css ('display', 'block');
+$('.ButtonFontClose').css ('display', 'block');
+$('.ButtonFont').css ('display', 'none');
+});
+
+// Paragraph FontClose button
+$('.ButtonFontClose').click(function() {
+$('.ButtonBrowseFonts').css ('display', 'none');
+$('.ButtonFontClose').css ('display', 'none');
+$('.ButtonFont').css ('display', 'block');
+});
+
+//
 
 // H1Align button
 $('.H1Align').click(function() {

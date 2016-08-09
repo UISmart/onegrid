@@ -5,6 +5,29 @@
  *
  */
 
+/*
+1 2 3 4 5
+G       6
+F       7
+E       8
+D C B A 9
+*/
+
+// blocks editor
+
+$(document).ready(
+     function() {
+		 $("body").animate({right:'200px'}, 5000);
+     $('#Blocks').animate({right:'200px'}, 5000);
+});
+
+// insert blocks editor
+
+$('body').append("<div id='Blocks'></div>");
+$( "#Blocks" ).insertBefore ( $( "#content" ) );
+
+$('#Blocks').append("<div class='blocksClose'></div>");
+
 // EDITABLE H1.
 
 var EditableDivs = ("h1, h2, p");
@@ -12,11 +35,6 @@ var EditableDivs = ("h1, h2, p");
 $(function(){
     var $div=$(EditableDivs), isEditable=$div.is('.editable');
     $(EditableDivs).prop('contenteditable',!isEditable).toggleClass('editable');
-})
-
-// tooltip init
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
 })
 
 // tooltip H1
@@ -322,3 +340,19 @@ $(function () {
     var str = document.getElementById("content").innerHTML;
     createDownloadLink("#export",str,"OneGridPage.html");
 });
+
+// Font Awesome Picker
+
+$(function () {
+    $('.icon-container').iconpicker();
+});
+
+$('.icon-container').click(function() {
+  $('.icon-container').data('iconpicker').iconpickerProperty;
+});
+
+// For the first matched element, access to a plugin property value
+$('.icon-container').data('iconpicker').iconpickerProperty;
+
+// Call and apply a plugin method to EACH matched element.
+$.iconpicker.batch('.icon-container');

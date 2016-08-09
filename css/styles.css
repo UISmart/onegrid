@@ -6,6 +6,10 @@ RESET
 ========================================================
 */
 
+body {
+position: absolute;
+}
+
 h1, h2, h3 {
 margin-top: 0 !important;
 padding:0 !important;
@@ -34,16 +38,6 @@ CSS
 
 * {
 font-family: "proxima-nova",sans-serif;
-}
-
-.buttonsContainer {
-width: 100%;
-padding:1em 0;
-background:#34495e;
-opacity: .95;
-bottom: 0;
-position: fixed;
-z-index: 999;
 }
 
 button, p {
@@ -91,13 +85,27 @@ background-color: #01162c;
 transition-duration: 1s;
 }
 
-
-
 /*
 ========================================================
 EDITOR
 ========================================================
 */
+
+#Blocks {
+position: absolute;
+right:-200px !important;
+top:0;
+background:#01162c;
+width: 200px;
+height: 100%;
+z-index:999;
+}
+
+.blocksClose {
+width: 100%;
+height: 53px;
+background: #12273d;
+}
 
 h1:focus, p.paragraph:focus {
 outline: 1px dashed #34495e;
@@ -458,6 +466,19 @@ opacity:1;
 background: #00C9FF; /* fallback for old browsers */
 background: -webkit-linear-gradient(to left, #00C9FF , #92FE9D); /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to left, #00C9FF , #92FE9D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/*
+========================================================
+ABOUT
+========================================================
+*/
+
+.icon-container {
+width: 100%;
+color: #fff;
+font-size: 6em;
+text-align: center;
 }
 
 /*

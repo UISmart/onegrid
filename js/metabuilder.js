@@ -17,16 +17,101 @@ D C B A 9
 
 $(document).ready(
      function() {
-		 $("body").animate({right:'200px'}, 5000);
-     $('#Blocks').animate({right:'200px'}, 5000);
+		 $("body").animate({right:'200px'}, 3000);
+     $('#Blocks').animate({right:'200px'}, 3000);
 });
 
 // insert blocks editor
 
+$( function() {
+   $( "#sortable" ).sortable({
+     revert: true
+   });
+   $( "#draggable" ).draggable({
+     connectToSortable: "#sortable",
+     helper: "clone",
+     revert: "invalid"
+   });
+   $( "ul, li" ).disableSelection();
+ } );
+
+//
+
+
+
 $('body').append("<div id='Blocks'></div>");
 $( "#Blocks" ).insertBefore ( $( "#content" ) );
 
-$('#Blocks').append("<div class='blocksClose'></div>");
+$('#Blocks').append("<div class='blocksControls'>\
+<div class='blocksOpen animated fadeIn'><div class='arrowLeft'><img class='svg' src='https://uismart.github.io/onegrid/img/left-arrow.svg'/></div></div>\
+<div class='blocksControlsClose'><img class='svg' src='https://uismart.github.io/onegrid/img/cross-out.svg'/></div>\
+</div>\
+<div class='TheBlocks'>\
+<ul id='sortable'>\
+<li class='ui-state-highlight'><div class='blockOne'><div class='blockText'>Carousel</div></div></li>\
+<li class='ui-state-default'><div class='blockTwo'><div class='blockText'>Jumbotron</div></div></li>\
+<li class='ui-state-default'><div class='blockThree'><div class='blockText'>About</div></div></li>\
+</ul>\
+</div>");
+
+// close blocks editor
+
+$('.blocksControlsClose').click(function() {
+  $("body").animate({right:'53'}, 1000);
+  $('#Blocks').animate({right:'53'}, 1000);
+  $(".blocksControlsClose").hide().delay(500).fadeOut();
+  $(".blocksOpen").show().delay(500).fadeIn();
+  $(".TheBlocks").addClass ("animated slideOutRight");
+});
+
+// open blocks editor
+
+$('.blocksOpen').click(function() {
+  $("body").animate({right:'200px'}, 1000);
+  $('#Blocks').animate({right:'200px'}, 1000);
+  $(".blocksControlsClose").show().delay(500).fadeIn();
+  $(".blocksOpen").hide().delay(500).fadeOut();
+  $(".TheBlocks").removeClass ("slideOutRight");
+  $(".TheBlocks").addClass ("fadeIn");
+});
+
+// fill SVG
+
+$(function(){
+    jQuery('img.svg').each(function(){
+        var $img = jQuery(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+
+        jQuery.get(imgURL, function(data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if(typeof imgID !== 'undefined') {
+                $svg = $svg.attr('id', imgID);
+            }
+            // Add replaced image's classes to the new SVG
+            if(typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass+' replaced-svg');
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Check if the viewport is set, else we gonna set it if we can.
+            if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+            }
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+
+        }, 'xml');
+
+    });
+});
 
 // EDITABLE H1.
 

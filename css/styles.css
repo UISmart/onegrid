@@ -26,8 +26,14 @@ text-decoration:none;
 transition-duration: 1s;
 }
 
+ul, ol {
+list-style-type: none;
+padding:0;
+margin:0;
+}
+
 ::selection {
-background: gray;
+background: white;
 }
 
 /*
@@ -38,6 +44,7 @@ CSS
 
 * {
 font-family: "proxima-nova",sans-serif;
+font-weight: 300 !important;
 }
 
 button, p {
@@ -101,10 +108,69 @@ height: 100%;
 z-index:999;
 }
 
-.blocksClose {
+.blocksControls {
 width: 100%;
 height: 53px;
 background: #12273d;
+}
+
+.blocksControlsClose {
+cursor: pointer;
+padding: 16px;
+padding-top: 14px;
+padding-left: 20px;
+float: right;
+width: 53px;
+height: 100%;
+}
+
+.blocksControlsClose:hover {
+-webkit-transition-duration: 1s; /* Safari */
+transition-duration: 1s;
+background:rgba(255, 255, 255, 0.1);
+}
+
+.blocksOpen {
+display: none;
+position: relative;
+cursor: pointer;
+padding:1em;
+padding-top:14px;
+float: left;
+width: 53px;
+height: 100%;
+}
+
+.blocksOpen:hover {
+-webkit-transition-duration: 1s; /* Safari */
+transition-duration: 1s;
+background:rgba(255, 255, 255, 0.1);
+}
+
+polygon {fill: #FFF !important;}
+img.svg {fill: #FFF !important;}
+
+.arrowLeft {
+}
+
+.blockOne, .blockTwo, .blockThree {
+cursor:pointer;
+width: 162px;
+height: 80px;
+border: 1px solid #1abc9c;
+margin: 20px 20px;
+}
+
+.blockOne:hover, .blockTwo:hover, .blockThree:hover {
+-webkit-transition-duration: 1s; /* Safari */
+transition-duration: 1s;
+background:rgba(26,188,156, 0.2);
+}
+
+.blockText {
+padding-top:24px;
+text-align: center;
+color:#fff !important;
 }
 
 h1:focus, p.paragraph:focus {

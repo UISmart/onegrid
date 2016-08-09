@@ -47,10 +47,10 @@ $('#Blocks').append("<div class='blocksControls'>\
 <div class='blocksControlsClose'><img class='svg' src='https://uismart.github.io/onegrid/img/cross-out.svg'/></div>\
 </div>\
 <div class='TheBlocks'>\
-<ul id='sortable draggable'>\
-<li class='ui-state-highlight'><div class='blockOne'><div class='blockText'>Carousel</div></div></li>\
-<li class='ui-state-default'><div class='blockTwo'><div class='blockText'>Jumbotron</div></div></li>\
-<li class='ui-state-default'><div class='blockThree'><div class='blockText'>About</div></div></li>\
+<ul id='sortable'>\
+<li class='ui-state-highlight' id='draggable'><div class='blockOne'><div class='blockText'>Carousel</div></div></li>\
+<li class='ui-state-default' id='draggable'><div class='blockTwo'><div class='blockText'>Jumbotron</div></div></li>\
+<li class='ui-state-default' id='draggable'><div class='blockThree'><div class='blockText'>About</div></div></li>\
 </ul>\
 </div>");
 
